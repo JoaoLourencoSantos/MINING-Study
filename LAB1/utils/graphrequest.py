@@ -1,9 +1,10 @@
+from LAB1.secrets.secret import getKeyFromGit
 import requests
 import json
 
 def callGitApi(url, query):
   result =  requests.post( url, 
-              headers= {'Authorization': 'bearer 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'}, 
+              headers= {'Authorization': 'bearer ' + getKeyFromGit()}, 
               json={'query': query}
             )
             
