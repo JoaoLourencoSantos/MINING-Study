@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 
-/LAB1/secrets/*
+./LAB1/secrets/*
