@@ -1,7 +1,8 @@
+size = "100"
 
 firstQuery = """
 query {
-  search(query: "stars:>100", type: REPOSITORY, first: 100) {
+  search(query: "stars:>100", type: REPOSITORY, first: """ + size + """) {
     nodes {
       ... on Repository {
         id
@@ -32,7 +33,7 @@ query {
 
 secondQuery = """
 query {
-  search(query: "stars:>100", type: REPOSITORY, first: 100) {
+  search(query: "stars:>100", type: REPOSITORY, first: """ + size + """) {
     nodes {
       ... on Repository {
         id
@@ -47,8 +48,10 @@ query {
 
 """
 
+
 def getFirstQuery():
-  return firstQuery
+    return firstQuery
+
 
 def getSecondQuery():
-  return secondQuery
+    return secondQuery
