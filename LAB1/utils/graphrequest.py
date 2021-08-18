@@ -4,8 +4,7 @@ import json
 
 def callGitApi(url, query):
     result = requests.post(url,
-                           headers={
-                               'Authorization': 'bearer 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'},
+                           headers={'Authorization': 'bearer YOUR_TOKEN'},
                            json={'query': query}
                            )
 
