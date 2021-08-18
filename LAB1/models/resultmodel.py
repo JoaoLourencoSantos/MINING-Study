@@ -23,15 +23,15 @@ class ResultModel:
         lastUpdate = dateWithIso(updatedAt)
 
         return {
-            "id": id,
-            "nameWithOwner": nameWithOwner,
-            "updatedAt": dateWithoutHours(updatedAt),
-            "timeToUpdate": diferenceInDays(lastUpdate, currentDate),
-            "createdAt": dateWithoutHours(createdAt),
-            "primaryLanguage": primaryLanguage['name'] if primaryLanguage else "",
-            "stargazers": stargazers['totalCount'] if stargazers else "",
-            "pullRequests": pullRequests['totalCount'] if pullRequests else "",
-            "releases": releases['totalCount'] if releases else "",
-            "issues": issues['totalCount'] if issues else "",
-            "closedIssues": closedIssues if closedIssues else ""
+            "HashId": id,
+            "ProjectName": nameWithOwner,
+            "UpdateAt": dateWithoutHours(updatedAt),
+            "TimeToUpdate": diferenceInDays(lastUpdate, currentDate),
+            "CreatedAt": dateWithoutHours(createdAt),
+            "PrimaryLanguage": primaryLanguage['name'] if primaryLanguage else "0",
+            "Stargazers": stargazers['totalCount'] if stargazers else "0",
+            "TotalOfPullRequests": pullRequests['totalCount'] if pullRequests else "0",
+            "TotalOfReleases": releases['totalCount'] if releases else "0",
+            "TotalOfIssues": issues['totalCount'] if issues else "0",
+            "TotalOfClosedIssues": closedIssues if closedIssues else "0"
         }
