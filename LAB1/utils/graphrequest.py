@@ -3,7 +3,7 @@ import requests
 import json
 
 pageSize = 100
-limitData = 200
+limitData = 1000
 
 
 def callGitApiPaginated(url):
