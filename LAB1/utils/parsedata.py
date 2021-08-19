@@ -1,13 +1,10 @@
 import json
 from models.resultmodel import ResultModel
 
-def joinDataTables(firstData, secondData):
+def parseDataTables(data):
 
     result = []
-    for value in firstData:  
-        
-        closedIssues = findClosedIssuesByRep(value['id'], secondData) 
- 
+    for value in data:    
         singleResult    =  ResultModel.toJson(
             value['id'],
             value['nameWithOwner'],
@@ -17,18 +14,12 @@ def joinDataTables(firstData, secondData):
             value['stargazers'],
             value['pullRequests'],
             value['releases'],
-            value['issues'],
-            closedIssues
+            value['totalIssues'],
+            value['closedIssues'] 
         )
   
         result.append(singleResult)
 
-    return result
-    
-def findClosedIssuesByRep(id, data): 
-    for value in data: 
-        if (value['id'] == id) :
-            return value['issues']['totalCount']
-
+    return result 
 
 

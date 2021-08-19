@@ -15,9 +15,9 @@ class ResultModel:
         self.pullRequests = pullRequests['totalCount'] if pullRequests else "",
         self.releases = releases['totalCount'] if releases else "",
         self.issues = issues['totalCount'] if issues else "",
-        self.closedIssues = closedIssues if closedIssues else ""
+        self.closedIssues = closedIssues['totalCount'] if closedIssues else ""
 
-    def toJson(id, nameWithOwner, createdAt, updatedAt, primaryLanguage, stargazers, pullRequests, releases, issues, closedIssues):
+    def toJson(id, nameWithOwner, createdAt, updatedAt, primaryLanguage, stargazers, pullRequests, releases, totalIssues, closedIssues):
 
         currentDate = getCurrentDate()
         lastUpdate = dateWithIso(updatedAt)
@@ -32,6 +32,6 @@ class ResultModel:
             "Stargazers": stargazers['totalCount'] if stargazers else "0",
             "TotalOfPullRequests": pullRequests['totalCount'] if pullRequests else "0",
             "TotalOfReleases": releases['totalCount'] if releases else "0",
-            "TotalOfIssues": issues['totalCount'] if issues else "0",
-            "TotalOfClosedIssues": closedIssues if closedIssues else "0"
+            "TotalOfIssues": totalIssues['totalCount'] if totalIssues else "0",
+            "TotalOfClosedIssues": closedIssues['totalCount'] if closedIssues else "0"
         }

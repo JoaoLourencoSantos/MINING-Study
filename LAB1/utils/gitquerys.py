@@ -1,4 +1,4 @@
-size = "100"
+size = "10"
 
 firstQuery = """
 query {
@@ -21,7 +21,10 @@ query {
         releases {
           totalCount
         }
-        issues {
+        totalIssues: issues {
+          totalCount
+        }
+        closedIssues: issues(states: CLOSED) {
           totalCount
         }
       }
@@ -31,27 +34,5 @@ query {
 
 """
 
-secondQuery = """
-query {
-  search(query: "stars:>100", type: REPOSITORY, first: """ + size + """) {
-    nodes {
-      ... on Repository {
-        id
-        nameWithOwner 
-        issues(states: CLOSED) {
-          totalCount
-        }
-      }
-    } 
-  }
-}
-
-"""
-
-
 def getFirstQuery():
-    return firstQuery
-
-
-def getSecondQuery():
-    return secondQuery
+    return firstQuery 

@@ -1,16 +1,14 @@
-from utils.joindata import joinDataTables
-from utils.gitquerys import getFirstQuery, getSecondQuery
-from utils.graphrequest import callGitApi
-import requests
+from utils.parsedata import parseDataTables
+from utils.gitquerys import getFirstQuery 
+from utils.graphrequest import callGitApi 
 import json
 import pandas
 
 GIT_URL = 'https://api.github.com/graphql'
 
-firstResult = callGitApi(GIT_URL, getFirstQuery())
-secondResult = callGitApi(GIT_URL, getSecondQuery())
+resultData = callGitApi(GIT_URL, getFirstQuery()) 
 
-result = joinDataTables(firstResult, secondResult)
+result = parseDataTables(resultData)
 
 if (result is None):
     print('Error on build result data')
