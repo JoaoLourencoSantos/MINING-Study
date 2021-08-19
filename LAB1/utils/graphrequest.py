@@ -3,7 +3,7 @@ import requests
 import json
 
 pageSize = 100
-limitData = 1000
+limitData = 200
 
 
 def callGitApiPaginated(url):
@@ -29,7 +29,7 @@ def callGitByPage(url, page):
 
     result = requests.post(url,
                            headers={
-                               'Authorization': 'bearer YOUR_TOKEN'},
+                               'Authorization': 'bearer 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'},
                            json={'query': query}
                            )
 

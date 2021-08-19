@@ -1,6 +1,6 @@
 
 from datetime import date
-from utils.dateutils import dateWithIso, dateWithoutHours, diferenceInDays, getCurrentDate
+from utils.dateutils import dateWithIso, dateWithoutHours, diferenceInDays, diferenceInYears, getCurrentDate
 
 
 class ResultModel:
@@ -29,7 +29,7 @@ class ResultModel:
             "UpdateAt": dateWithoutHours(updatedAt),
             "TimeToUpdate": diferenceInDays(lastUpdate, currentDate),
             "CreatedAt": dateWithoutHours(createdAt),
-            "Age": diferenceInDays(isoCreatedAt, currentDate),
+            "Age": diferenceInYears(isoCreatedAt, currentDate),
             "PrimaryLanguage": primaryLanguage['name'] if primaryLanguage else "-",
             "Stargazers": stargazers['totalCount'] if stargazers else "0",
             "TotalOfPullRequests": pullRequests['totalCount'] if pullRequests else "0",
