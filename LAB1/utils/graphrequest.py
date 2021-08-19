@@ -29,7 +29,7 @@ def callGitByPage(url, page):
 
     result = requests.post(url,
                            headers={
-                               'Authorization': 'bearer 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'},
+                               'Authorization': 'bearer YOUR_TOKEN'},
                            json={'query': query}
                            )
 
