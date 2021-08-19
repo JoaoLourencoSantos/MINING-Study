@@ -21,6 +21,7 @@ class ResultModel:
 
         currentDate = getCurrentDate()
         lastUpdate = dateWithIso(updatedAt)
+        isoCreatedAt = dateWithIso(createdAt)
 
         return {
             "HashId": id,
@@ -28,7 +29,8 @@ class ResultModel:
             "UpdateAt": dateWithoutHours(updatedAt),
             "TimeToUpdate": diferenceInDays(lastUpdate, currentDate),
             "CreatedAt": dateWithoutHours(createdAt),
-            "PrimaryLanguage": primaryLanguage['name'] if primaryLanguage else "0",
+            "Age": diferenceInDays(isoCreatedAt, currentDate),
+            "PrimaryLanguage": primaryLanguage['name'] if primaryLanguage else "-",
             "Stargazers": stargazers['totalCount'] if stargazers else "0",
             "TotalOfPullRequests": pullRequests['totalCount'] if pullRequests else "0",
             "TotalOfReleases": releases['totalCount'] if releases else "0",

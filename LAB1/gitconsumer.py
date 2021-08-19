@@ -1,12 +1,11 @@
-from utils.parsedata import parseDataTables
-from utils.gitquerys import getFirstQuery 
-from utils.graphrequest import callGitApi 
+from utils.parsedata import parseDataTables 
+from utils.graphrequest import callGitApiPaginated 
 import json
 import pandas
 
 GIT_URL = 'https://api.github.com/graphql'
 
-resultData = callGitApi(GIT_URL, getFirstQuery()) 
+resultData = callGitApiPaginated(GIT_URL) 
 
 result = parseDataTables(resultData)
 
