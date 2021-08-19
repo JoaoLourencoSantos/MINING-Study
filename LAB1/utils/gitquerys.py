@@ -1,4 +1,4 @@
-size = "10"
+size = "100"
 
 firstQuery = """
 query {
