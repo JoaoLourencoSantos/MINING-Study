@@ -29,10 +29,9 @@ def callGitByPage(url, page):
 
     result = requests.post(url,
                            headers={
-                               'Authorization': 'bearer YOUR_TOKEN'},
+                               'Authorization': 'bearer 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'},
                            json={'query': query}
-                           )
-
+                           ) 
     print("Result status from request - ", result.status_code)
 
     data = json.loads(result.text)['data']['search']

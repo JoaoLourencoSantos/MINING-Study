@@ -20,4 +20,4 @@ else:
     print(" [*] Printing datatable result")
     print(df)
 
-    df.to_csv('csv/GIT_RESULT.csv', sep=';', encoding='UTF-8')
+    df.to_csv('csv/GIT_RESULT.csv', sep=',', encoding='UTF-8')
