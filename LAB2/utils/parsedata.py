@@ -1,7 +1,7 @@
 
 
 from service.metriccalculator import generateMetrics
-from service.projectmanager import cloneProject, removeProject
+from service.projectmanager import clearProject, cloneProject
 from models.resultmodel import ResultModel
 
 
@@ -33,8 +33,6 @@ def buildMetrics(projectName, entity):
 
         if (metrics is None):
             print(' [*] Error on build metrics!!!')
-
-            removeProject()
             return
 
         entity['CBO'] = str(metrics['cbo'])
@@ -42,4 +40,4 @@ def buildMetrics(projectName, entity):
         entity['LOC'] = str(metrics['loc'])
         entity['LCOM'] = str(metrics['lcom'])
 
-        removeProject()
+        clearProject()

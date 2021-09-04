@@ -9,12 +9,17 @@ GIT_REPOSITORY_URL = 'https://github.com/'
 def cloneProject(projectName):
 
     try:
+
+        clearProject()
+
         Repo.clone_from(getGitUrl(projectName), getCloneFolder())
 
         print(' [*] ' + projectName + ' was cloned with success!')
 
         return True
     except:
+        clearProject()
+
         return False
 
 
@@ -26,7 +31,7 @@ def getCloneFolder():
     return './project/clone'
 
 
-def removeProject():
+def clearProject():
 
     if os.path.exists(getCloneFolder()):
         shutil.rmtree(getCloneFolder())

@@ -29,7 +29,7 @@ def callGitByPage(url, page):
 
     result = requests.post(url,
                            headers={
-                               'Authorization': 'bearer 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'},
+                               'Authorization': 'bearer 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'},
                            json={'query': query}
                            ) 
     print(" [*] Result status from request - ", result.status_code)

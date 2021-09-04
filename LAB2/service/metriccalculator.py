@@ -1,10 +1,16 @@
 
+from jar.execute import produceMetrics
 import pandas as pd
+import math
 
 
 def generateMetrics():
+
     try:
-        dataset = pd.read_csv('./project/class.csv')
+
+        produceMetrics()
+
+        dataset = pd.read_csv('./jar/metrics/class.csv')
         dataset.head()
 
         # Calculate Median of 'Fare' column
@@ -14,10 +20,10 @@ def generateMetrics():
         lcom = dataset['lcom'].median()
 
         return {
-            "cbo": cbo,
-            "dit": dit,
-            "lcom": lcom,
-            "loc": loc
+            "cbo": cbo if cbo and not math.isnan(cbo) else "0",
+            "dit": dit if dit and not math.isnan(dit) else "0",
+            "lcom": lcom if lcom and not math.isnan(lcom) else "0",
+            "loc": loc if loc and not math.isnan(loc) else "0"
         }
 
     except:
