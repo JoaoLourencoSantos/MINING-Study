@@ -24,9 +24,4 @@ def diferenceInYears(start, final):
     resYear = int(resYear)
 
     return str(resYear)
-
-
-def calcRate(closed, total):
-    if (total == 0):
-        return "-"
-    return str(round(closed / total, 2)).replace(".", ",")
+ 

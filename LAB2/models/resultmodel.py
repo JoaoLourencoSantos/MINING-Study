@@ -1,20 +1,21 @@
 
 from datetime import date
-from utils.dateutils import calcRate, dateWithIso, dateWithoutHours, diferenceInDays, diferenceInYears, getCurrentDate
+from utils.dateutils import dateWithIso, dateWithoutHours, diferenceInYears, getCurrentDate
 
 
-class ResultModel:         
+class ResultModel:
     def toJson(id, nameWithOwner, createdAt, primaryLanguage, stargazers, releases):
 
-        currentDate = getCurrentDate() 
-        isoCreatedAt = dateWithIso(createdAt) 
+        currentDate = getCurrentDate()
+        isoCreatedAt = dateWithIso(createdAt)
 
         return {
             "HashId": id,
-            "ProjectName": nameWithOwner, 
+            "ProjectName": nameWithOwner,
             "CreatedAt": dateWithoutHours(createdAt),
             "Age": diferenceInYears(isoCreatedAt, currentDate),
             "PrimaryLanguage": primaryLanguage['name'] if primaryLanguage else "-",
-            "Stargazers": stargazers['totalCount'] if stargazers else "0", 
+            "Stargazers": stargazers['totalCount'] if stargazers else "0",
+            "TotalOfReleases": releases['totalCount'] if releases else "0",
             "TotalOfReleases": releases['totalCount'] if releases else "0"
         }

@@ -1,21 +1,45 @@
-import json
+
+
+from service.metriccalculator import generateMetrics
+from service.projectmanager import cloneProject, removeProject
 from models.resultmodel import ResultModel
+
 
 def parseDataTables(data):
 
     result = []
-    for value in data:    
-        singleResult    =  ResultModel.toJson(
+    for value in data:
+
+        singleResult = ResultModel.toJson(
             value['id'],
             value['nameWithOwner'],
-            value['createdAt'], 
+            value['createdAt'],
             value['primaryLanguage'],
-            value['stargazers'], 
-            value['releases'] 
+            value['stargazers'],
+            value['releases']
         )
-  
+
+        buildMetrics(value['nameWithOwner'], singleResult)
+
         result.append(singleResult)
 
-    return result 
+    return result
 
 
+def buildMetrics(projectName, entity):
+
+    if (cloneProject(projectName)):
+        metrics = generateMetrics()
+
+        if (metrics is None):
+            print(' [*] Error on build metrics!!!')
+
+            removeProject()
+            return
+
+        entity['CBO'] = str(metrics['cbo'])
+        entity['DIT'] = str(metrics['dit'])
+        entity['LOC'] = str(metrics['loc'])
+        entity['LCOM'] = str(metrics['lcom'])
+
+        removeProject()
