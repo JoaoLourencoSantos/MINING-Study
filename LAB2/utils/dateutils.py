@@ -21,10 +21,9 @@ def diferenceInDays(start, final):
 
 def diferenceInYears(start, final):
     resYear = float(diferenceInDays(start, final))/365.0
-    resMonth = int((resYear - int(resYear)) * 365/30)
     resYear = int(resYear)
 
-    return str(resYear) + " anos e " + str(resMonth) + " meses"
+    return str(resYear)
 
 
 def calcRate(closed, total):

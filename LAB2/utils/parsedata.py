@@ -8,14 +8,10 @@ def parseDataTables(data):
         singleResult    =  ResultModel.toJson(
             value['id'],
             value['nameWithOwner'],
-            value['createdAt'],
-            value['updatedAt'],
+            value['createdAt'], 
             value['primaryLanguage'],
-            value['stargazers'],
-            value['pullRequests'],
-            value['releases'],
-            value['totalIssues'],
-            value['closedIssues'] 
+            value['stargazers'], 
+            value['releases'] 
         )
   
         result.append(singleResult)
