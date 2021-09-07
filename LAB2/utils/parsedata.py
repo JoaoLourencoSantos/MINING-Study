@@ -3,6 +3,8 @@
 from service.metriccalculator import generateMetrics
 from service.projectmanager import clearProject, cloneProject
 from models.resultmodel import ResultModel
+import json
+import pandas
 
 
 def parseDataTables(data):
@@ -23,6 +25,8 @@ def parseDataTables(data):
 
         result.append(singleResult)
 
+        saveLineInFile(result)
+
     return result
 
 
@@ -41,3 +45,15 @@ def buildMetrics(projectName, entity):
         entity['LCOM'] = str(metrics['lcom'])
 
         clearProject()
+
+
+def saveLineInFile(result):
+    if (result is None):
+        print('Error on build result data')
+    else:
+        json_string = json.dumps(result)
+
+        df_data = json.loads(json_string)
+        df = pandas.DataFrame(df_data) 
+
+        df.to_csv('csv/REPOSITORIES_WITH_METRICS.csv', sep=',', encoding='UTF-8')
