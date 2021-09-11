@@ -6,8 +6,18 @@ from models.resultmodel import ResultModel
 import json
 import pandas
 
+CSV_FILE = 'csv/REPOSITORIES_WITH_METRICS.csv'
 
-def parseDataTables(data):
+
+def isPopulatedFile(): 
+    try:
+        df = pandas.read_csv(CSV_FILE)
+        return len(df) >= 1000
+    except: 
+        return False
+
+
+def parseRepositoriesToCsv(data):
 
     result = []
     for value in data:
@@ -21,16 +31,43 @@ def parseDataTables(data):
             value['releases']
         )
 
-        buildMetrics(value['nameWithOwner'], singleResult)
-
         result.append(singleResult)
 
-        saveLineInFile(result)
+    saveInFile(result)
 
     return result
 
 
-def buildMetrics(projectName, entity):
+def iterateAndGenerateMetrics():
+    df = pandas.read_csv(CSV_FILE)
+
+    for index, row in df.iterrows():
+
+        try:
+
+            if (row['CBO'] != "-" and row['LOC'] != "-"):
+
+                print("\nTHIS METRICAS WAS GENERATED OF PROJECT - ",
+                      row['ProjectName'])
+
+                continue
+
+            print('\nINIT GENERATION OF METRICS TO - ', row['ProjectName'])
+
+            metrics = buildMetrics(row['ProjectName'])
+
+            df.loc[index, 'CBO'] = str(metrics['cbo'])
+            df.loc[index, 'DIT'] = str(metrics['dit'])
+            df.loc[index, 'LOC'] = str(metrics['loc'])
+            df.loc[index, 'LCOM'] = str(metrics['lcom'])
+
+            df.to_csv(CSV_FILE, index=False)
+
+        except:
+            print("EROR ON BUILD METRICS OF PROJECT - ", row['ProjectName'])
+
+
+def buildMetrics(projectName):
 
     if (cloneProject(projectName)):
         metrics = generateMetrics()
@@ -39,21 +76,18 @@ def buildMetrics(projectName, entity):
             print(' [*] Error on build metrics!!!')
             return
 
-        entity['CBO'] = str(metrics['cbo'])
-        entity['DIT'] = str(metrics['dit'])
-        entity['LOC'] = str(metrics['loc'])
-        entity['LCOM'] = str(metrics['lcom'])
-
         clearProject()
 
+        return metrics
 
-def saveLineInFile(result):
+
+def saveInFile(result):
     if (result is None):
         print('Error on build result data')
     else:
         json_string = json.dumps(result)
 
         df_data = json.loads(json_string)
-        df = pandas.DataFrame(df_data) 
+        df = pandas.DataFrame(df_data)
 
-        df.to_csv('csv/REPOSITORIES_WITH_METRICS.csv', sep=',', encoding='UTF-8')
+        df.to_csv(CSV_FILE, sep=',', encoding='UTF-8')

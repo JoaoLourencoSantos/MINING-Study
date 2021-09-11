@@ -16,6 +16,9 @@ class ResultModel:
             "Age": diferenceInYears(isoCreatedAt, currentDate),
             "PrimaryLanguage": primaryLanguage['name'] if primaryLanguage else "-",
             "Stargazers": stargazers['totalCount'] if stargazers else "0",
-            "TotalOfReleases": releases['totalCount'] if releases else "0",
-            "TotalOfReleases": releases['totalCount'] if releases else "0"
+            "TotalOfReleases": releases['totalCount'] if releases else "0", 
+            'CBO': '-',
+            'DIT': '-',
+            'LOC': '-',
+            'LCOM': '-',
         }
